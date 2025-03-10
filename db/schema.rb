@@ -17,6 +17,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_192655) do
   create_table "customer_subscriptions", id: false, force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "subscription_id", null: false
+    t.date "start_date"
+    t.boolean "active", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id", "subscription_id"], name: "index_customer_subscriptions_on_customer_id_and_subscription_id", unique: true
@@ -27,6 +29,9 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_192655) do
   create_table "customer_teas", id: false, force: :cascade do |t|
     t.bigint "customer_id", null: false
     t.bigint "tea_id", null: false
+    t.integer "rating"
+    t.boolean "favorite", default: false
+    t.text "review"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id", "tea_id"], name: "index_customer_teas_on_customer_id_and_tea_id", unique: true
@@ -48,7 +53,7 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_192655) do
     t.string "title", null: false
     t.decimal "price", precision: 10, scale: 2, null: false
     t.string "status"
-    t.string "frequency", comment: "Daily, Weekly, Monthly, etc."
+    t.string "frequency"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -56,8 +61,8 @@ ActiveRecord::Schema[7.1].define(version: 2025_03_10_192655) do
   create_table "teas", force: :cascade do |t|
     t.string "title", null: false
     t.text "description"
-    t.integer "temperature", comment: "Ideal brewing temperature in Fahrenheit or Celsius"
-    t.integer "brew_time", comment: "Recommended brewing time in minutes"
+    t.integer "temperature"
+    t.integer "brew_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

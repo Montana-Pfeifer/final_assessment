@@ -3,8 +3,8 @@ class CreateTeas < ActiveRecord::Migration[7.0]
     create_table :teas do |t|
       t.string :title, null: false
       t.text :description
-      t.integer :temperature, comment: 'Ideal brewing temperature in Fahrenheit or Celsius'
-      t.integer :brew_time, comment: 'Recommended brewing time in minutes'
+      t.integer :temperature
+      t.integer :brew_time
       t.timestamps
     end
   end
