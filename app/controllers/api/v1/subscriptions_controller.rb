@@ -3,17 +3,20 @@ class Api::V1::SubscriptionsController < ApplicationController
 
   def index
     subscriptions = Subscription.includes(:customers, :customer_subscriptions).all
-    render json: subscriptions, include: [:customers]
+    render json: SubscriptionSerializer.new(subscriptions).serializable_hash
   end
 
   def show
-    render json: @subscription, include: [:customers, :customer_subscriptions, :teas]
+    render json: SubscriptionSerializer.new(@subscription).serializable_hash
   end
 
   def destroy
-    @subscription.update(status: 'cancelled')
-    render json: { message: "Subscription cancelled successfully" }, status: :ok
+    subscription = Subscription.find(params[:id])
+    subscription.update(status: 'cancelled')
+  
+    head :no_content
   end
+  
 
   private
 
@@ -23,4 +26,3 @@ class Api::V1::SubscriptionsController < ApplicationController
     render json: { error: "Subscription not found" }, status: :not_found
   end
 end
-
