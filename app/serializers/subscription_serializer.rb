@@ -3,7 +3,7 @@ class SubscriptionSerializer
 
   attributes :title, :price, :status, :frequency
 
-  has_many :customers, serializer: CustomerSerializer
-  has_many :teas, serializer: TeaSerializer
-  has_many :customer_subscriptions, serializer: CustomerSubscriptionSerializer
+  has_many :customers
+  has_many :teas, serializer: TeaSerializer 
+  has_many :customer_subscriptions
 end
