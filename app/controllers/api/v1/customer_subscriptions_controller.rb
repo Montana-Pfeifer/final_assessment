@@ -11,6 +11,6 @@ class Api::V1::CustomerSubscriptionsController < ApplicationController
   private
 
   def customer_subscription_params
-    params.require(:customer_subscription).permit(:customer_id, :subscription_id, :start_date, :active)
+    params.require(:customer_subscription).permit(:customer_id, :subscription_id,:active)
   end
 end
