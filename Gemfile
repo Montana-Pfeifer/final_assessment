@@ -48,3 +48,5 @@ group :test do
   gem "simplecov"
 end
 
+
+gem "rack-cors", "~> 2.0"
